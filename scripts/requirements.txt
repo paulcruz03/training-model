@@ -1,0 +1,8 @@
+einops
+
+python-dotenv
+psycopg2
+torch
+pandas
+transformers[torch]
+numpy
