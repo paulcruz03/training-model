@@ -6,3 +6,6 @@ torch
 pandas
 transformers[torch]
 numpy
+
+openai
+pgvector
