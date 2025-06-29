@@ -1,7 +1,7 @@
 import sys
 from mods.database import database_exists, ensure_pgvector_enabled, create_table, DB_NAME
-from mods.parsing import load_csv
-from mods.modeling import get_embeddings, insert_embedding
+from mods.parsing import load_csv, process_csv
+from mods.modeling import get_entry_by_embedding
 
 if __name__ == "__main__":
     print(f"🔍 Checking if database '{DB_NAME}' exists...")
@@ -15,8 +15,8 @@ if __name__ == "__main__":
         print("❌ Failed to create tables.")
         sys.exit(1)
 
-    df = load_csv()
-    print(df.head(1))  # Show first few rows
-    get_embeddings("sample")
+    # df = load_csv()
+    # process_csv(df)
+    get_entry_by_embedding("final destination")
 
     

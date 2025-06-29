@@ -2,26 +2,25 @@ import psycopg2
 import sys
 from pgvector.psycopg2 import register_vector
 
-from mods.env import DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT
+from mods.env import DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT, EMBEDDING_DIMENSION
 
-TABLE_QUERY = """
+TABLE_QUERY = f"""
 CREATE TABLE IF NOT EXISTS movie_embeddings (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     url TEXT,
-    tokens INTEGER,
-    title_embedding VECTOR(1536) NOT NULL,
-    desc_embedding VECTOR(1536) NOT NULL,
+    title_embedding VECTOR({EMBEDDING_DIMENSION}) NOT NULL,
+    desc_embedding VECTOR({EMBEDDING_DIMENSION}) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 """
 
-TABLE_QUERY_JSON = """
+TABLE_QUERY_JSON = f"""
 CREATE TABLE IF NOT EXISTS movie_json_embeddings (
     id SERIAL PRIMARY KEY,
     content JSONB,
-    embedding VECTOR(1536) NOT NULL
+    embedding VECTOR({EMBEDDING_DIMENSION}) NOT NULL
 );"""
 
 def create_connection():

@@ -9,3 +9,4 @@ numpy
 
 openai
 pgvector
+sentence_transformers
