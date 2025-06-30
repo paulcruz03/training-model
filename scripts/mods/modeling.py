@@ -40,14 +40,14 @@ def get_entry_by_embedding(query, top_k: int = 5):
     results = []
     with conn.cursor() as cur:
         cur.execute(f"""
-            SELECT content, 1 - (embedding <=> %s) AS similarity
+            SELECT id, content, 1 - (embedding <=> '{query_embedding}'::vector) AS similarity
             FROM movie_json_embeddings
             ORDER BY similarity DESC
-            LIMIT %s;
-        """, (query_embedding, top_k))
+            LIMIT {top_k};
+        """)
 
         fetched_results = cur.fetchall()
-        for content, similarity in fetched_results:
-            results.append({"content": content, "similarity": similarity})
+        for (id, content, similarity) in fetched_results:
+            results.append({"id":id, "content": content, "similarity": similarity})
         
         return results

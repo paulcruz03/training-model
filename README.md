@@ -15,3 +15,9 @@ This repository contains Python scripts for training machine learning models and
 ### Follows this guides
 - https://airbyte.com/data-engineering-resources/postgresql-as-a-vector-database
 - https://medium.com/@sridevi17j/how-to-use-postgres-as-a-vector-db-72411a7ca624
+
+### Data used:
+- https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv
+
+### TODO:
+- Use LangChain for the results with prompt engineering to have better outcome

@@ -22,9 +22,9 @@ def process_csv(df: pd.DataFrame):
         data = df.to_dict(orient='records')
         for entry in data:
             title = entry.get('title', '')
-            description = entry.get('description', '')
-            url = entry.get('url', '')
-            json_content = {title: title, description: description} 
+            description = entry.get('overview', '')
+            url = entry.get('homepage', '')
+            json_content = {"title": title, "description": description, "url": url} 
             json_string = json.dumps(json_content)
             if insert_embedding(title, description, url, json_string):
                 print(f"✅ Entry '{title}' processed successfully.")

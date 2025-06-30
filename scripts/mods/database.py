@@ -75,3 +75,16 @@ def create_table():
     except Exception as e:
         print(f"Error checking table existence: {e}")
         return False
+    
+def drop_table():
+    try:
+        conn = create_connection()
+        with conn.cursor() as cur:
+            cur.execute("DROP TABLE IF EXISTS movie_embeddings;")
+            cur.execute("DROP TABLE IF EXISTS movie_json_embeddings;")
+            cur.close()
+        print("✅ Tables 'movie_embeddings', 'movie_json_embeddings' dropped successfully.")
+        return True
+    except Exception as e:
+        print(f"Error dropping tables: {e}")
+        return False
